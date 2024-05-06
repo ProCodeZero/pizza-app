@@ -1,0 +1,18 @@
+.button {
+  width: 141px;
+  height: 44px;
+  gap: 0px;
+  border: none;
+  border-radius: 28.5px;
+  color: white;
+  font-size: 16px;
+  font-family: var(--font);
+}
+
+.accent {
+  background-color: var(--primary-color);
+}
+
+.accent:hover {
+  background-color: var(--primary-hover-color);
+}
