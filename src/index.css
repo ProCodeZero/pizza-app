@@ -5,8 +5,10 @@
   --primary-text-color: #000;
   --secondary-text-color: #5b5b5e;
   --background-color: #fff;
+  --separator-color: #d4d6e0;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
