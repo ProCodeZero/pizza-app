@@ -3,6 +3,11 @@
   min-height: 100vh;
 }
 
+.content {
+  padding: 40px 60px;
+  width: 100%;
+}
+
 .sidebar {
   padding: 30px;
   border-right: 1px solid var(--separator-color);
