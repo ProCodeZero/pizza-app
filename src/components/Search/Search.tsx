@@ -10,6 +10,7 @@ const Search = forwardRef<HTMLInputElement, SearchProps>(function Input(
   return (
     <div className={styles["input-wrapper"]}>
       <input
+        id="input"
         {...props}
         ref={ref}
         className={cn(className, styles["input"], {
