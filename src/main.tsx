@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter, defer } from "react-router-dom";
 import { Cart } from "./pages/Cart/Cart";
 import { Error as ErrorPage } from "./pages/Error/Error";
-import { Layout } from "./layout/Layout/Layout.tsx";
+import { Layout } from "./layout/Menu/Layout.tsx";
 import "./index.css";
 import { Product } from "./pages/Product/Product.tsx";
 import axios from "axios";
