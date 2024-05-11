@@ -4,3 +4,22 @@
   grid-gap: 25px;
   margin-top: 20px;
 }
+
+@media (max-width: 1600px) {
+  .wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1385px) {
+  .wrapper {
+    grid-gap: 15px;
+  }
+}
+
+@media (max-width: 1385px) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
