@@ -11,6 +11,7 @@ import { PREFIX } from "./helpers/API.ts";
 import { AuthLayout } from "./layout/Auth/AuthLayout.tsx";
 import { Login } from "./pages/Login/Login.tsx";
 import { Register } from "./pages/Register/Register.tsx";
+import { RequireAuth } from "./helpers/RequierAuth.tsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Menu = lazy(() => import("./pages/Menu/Menu.tsx"));
@@ -18,7 +19,11 @@ const Menu = lazy(() => import("./pages/Menu/Menu.tsx"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
     children: [
       {
         path: "/",
