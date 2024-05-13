@@ -33,21 +33,6 @@ export function Menu() {
     }
   };
 
-  // Старый Запрос на fetch
-  // const getMenu = async () => {
-  //   try {
-  //     const response = await fetch(`${PREFIX}/products`);
-  //     if (!response.ok) {
-  //       return;
-  //     }
-  //     const data = (await response.json()) as Product[];
-  //     setProducts(data);
-  //   } catch (e) {
-  //     console.error(e);
-  //     return;
-  //   }
-  // };
-
   useEffect(() => {
     getMenu();
   }, []);

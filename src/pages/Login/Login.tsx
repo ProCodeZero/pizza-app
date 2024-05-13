@@ -3,13 +3,10 @@ import Button from "../../components/Button/Button";
 import Heading from "../../components/Heading/Heading";
 import Input from "../../components/Input/Input";
 import styles from "./Login.module.css";
-import { FormEvent, useState } from "react";
-import axios, { AxiosError } from "axios";
-import { PREFIX } from "../../helpers/API";
-import { LoginResponce } from "../../interfaces/auth.interface";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
-import { userActions } from "../../store/user.slice";
+import { FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { login } from "../../store/user.slice";
 
 export type LoginForm = {
   email: {
@@ -24,6 +21,13 @@ export function Login() {
   const [error, setError] = useState<string | null>();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const jwt = useSelector((s: RootState) => s.user.jwt);
+
+  useEffect(() => {
+    if (jwt) {
+      navigate("/");
+    }
+  }, [jwt, navigate]);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -34,20 +38,21 @@ export function Login() {
   };
 
   const sendLogin = async (email: string, password: string) => {
-    try {
-      const { data } = await axios.post<LoginResponce>(`${PREFIX}/auth/login`, {
-        email,
-        password,
-      });
-      // Добавление токена в store
-      dispatch(userActions.addJwt(data.access_token));
-      navigate("/");
-    } catch (e) {
-      if (e instanceof AxiosError) {
-        console.log(e);
-        setError(e.response?.data.message);
-      }
-    }
+    dispatch(login({ email, password }));
+    // try {
+    //   const { data } = await axios.post<LoginResponce>(`${PREFIX}/auth/login`, {
+    //     email,
+    //     password,
+    //   });
+    //   // Добавление токена в store
+    //   dispatch(userActions.addJwt(data.access_token));
+    //   navigate("/");
+    // } catch (e) {
+    //   if (e instanceof AxiosError) {
+    //     console.log(e);
+    //     setError(e.response?.data.message);
+    //   }
+    // }
   };
 
   return (
