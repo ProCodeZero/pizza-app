@@ -39,7 +39,6 @@ export function Login() {
         email,
         password,
       });
-      localStorage.setItem("jwt", data.access_token);
       // Добавление токена в store
       dispatch(userActions.addJwt(data.access_token));
       navigate("/");
