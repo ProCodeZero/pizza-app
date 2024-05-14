@@ -43,7 +43,7 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "user/register",
-  async (params: { email: string; password: string; name: string }) => {
+  async (params: { email: string; name: string; password: string }) => {
     try {
       const { data } = await axios.post<LoginResponce>(
         `${PREFIX}/auth/register`,
@@ -83,6 +83,9 @@ export const userSlice = createSlice({
     clearLoginError: (state) => {
       state.loginErrorMessage = undefined;
     },
+    clearRegisterError: (state) => {
+      state.registerErrorMessage = undefined;
+    },
   },
   extraReducers: (buider) => {
     buider.addCase(login.fulfilled, (state, action) => {
@@ -93,6 +96,15 @@ export const userSlice = createSlice({
     });
     buider.addCase(login.rejected, (state, action) => {
       state.loginErrorMessage = action.error.message;
+    });
+    buider.addCase(register.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+      state.jwt = action.payload.access_token;
+    });
+    buider.addCase(register.rejected, (state, action) => {
+      state.registerErrorMessage = action.error.message;
     });
     buider.addCase(getProfile.fulfilled, (state, action) => {
       state.profile = action.payload;

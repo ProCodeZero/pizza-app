@@ -6,7 +6,7 @@ import styles from "../Login/Login.module.css";
 import { FormEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { login, userActions } from "../../store/user.slice";
+import { register, userActions } from "../../store/user.slice";
 
 export type RegisterForm = {
   email: {
@@ -23,7 +23,7 @@ export type RegisterForm = {
 export function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { jwt, loginErrorMessage } = useSelector((s: RootState) => s.user);
+  const { jwt, registerErrorMessage } = useSelector((s: RootState) => s.user);
 
   useEffect(() => {
     if (jwt) {
@@ -33,21 +33,23 @@ export function Register() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    dispatch(userActions.clearLoginError());
+    dispatch(userActions.clearRegisterError());
     const target = e.target as typeof e.target & RegisterForm;
-    const { email, password } = target;
-    await sendLogin(email.value, password.value);
-  };
-
-  const sendLogin = async (email: string, password: string) => {
-    dispatch(login({ email, password }));
+    const { email, password, name } = target;
+    dispatch(
+      register({
+        email: email.value,
+        name: name.value,
+        password: password.value,
+      })
+    );
   };
 
   return (
     <div className={styles.login}>
-      <Heading>Вход</Heading>
-      {loginErrorMessage && (
-        <div className={styles.error}>{loginErrorMessage}</div>
+      <Heading>Регистрация</Heading>
+      {registerErrorMessage && (
+        <div className={styles.error}>{registerErrorMessage}</div>
       )}
       <form className={styles.form} onSubmit={submit}>
         <div className={styles.field}>
@@ -72,7 +74,7 @@ export function Register() {
       <div className={styles.links}>
         <div>Есть аккаунт?</div>
         <div>
-          <Link to="/auth/register">Вход</Link>
+          <Link to="/auth/login">Вход</Link>
         </div>
       </div>
     </div>
