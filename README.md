@@ -1,2 +1,2 @@
 
-React + TypeScript + Vite + Redux toolkit + React routing
+React + TypeScript + Vite + Redux toolkit + React routing + API
