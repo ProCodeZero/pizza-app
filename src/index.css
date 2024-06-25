@@ -1,14 +1,14 @@
 :root {
-  --font: "Open Sans", sans-serif;
-  --primary-color: #fe724c;
-  --primary-hover-color: #e26a49;
-  --primary-text-color: #000;
-  --secondary-text-color: #5b5b5e;
-  --background-color: #fff;
-  --separator-color: #d4d6e0;
+	--font: "Open Sans", sans-serif;
+	--primary-color: #fe724c;
+	--primary-hover-color: #e26a49;
+	--primary-text-color: #000;
+	--secondary-text-color: #746e6e;
+	--background-color: #fff;
+	--separator-color: #d4d6e0;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
+	font-family: "Open Sans", sans-serif;
+	margin: 0;
 }
