@@ -50,30 +50,11 @@ const router = createBrowserRouter([
 				errorElement: <>Ошибка</>,
 				loader: async ({ params }) => {
 					return defer({
-						data: new Promise((resolve, reject) => {
-							setTimeout(() => {
-								axios
-									.get(`${PREFIX}/products/${params.id}`)
-									.then((data) => resolve(data))
-									.catch((e) => reject(e));
-							}, 2000);
-						}),
+						data: axios
+							.get(`${PREFIX}/products/${params.id}`)
+							.then((data) => data)
+							.catch((e) => console.log(e)),
 					});
-					// defer без задержки
-					// return defer({
-					//   data: axios
-					//     .get(`${PREFIX}/products/${params.id}`)
-					//     .then((data) => data),
-					//     .catch((e) => reject(e));
-					// });
-
-					// await new Promise<void>((resolve) => {
-					//   setTimeout(() => {
-					//     resolve();
-					//   }, 2000);
-					// });
-					// const { data } = await axios.get(`${PREFIX}/products/${params.id}`);
-					// return data;
 				},
 			},
 		],
