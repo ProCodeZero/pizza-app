@@ -111,6 +111,7 @@
 
 .rating-shelf {
 	display: flex;
+	align-items: baseline;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 250px;
@@ -125,7 +126,7 @@
 
 .rating-value {
 	font-family: Open Sans;
-	font-size: 19px;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 25.87px;
 	box-shadow: -2px 10.21px 25.42px 0px rgba(128, 124, 137, 0.25);

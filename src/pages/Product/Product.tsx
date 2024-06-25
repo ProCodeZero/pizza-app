@@ -1,12 +1,17 @@
 import { Suspense } from "react";
-import { Await, useLoaderData } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Heading from "../../components/Heading/Heading";
 import { Product as Prod } from "../../interfaces/product.interface";
+import { cartActions } from "../../store/cart.slice";
 import styles from "./Product.module.css";
 
 export function Product() {
 	const { data } = useLoaderData() as { data: Prod };
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	return (
 		<div className={styles["product-wrapper"]}>
 			<Suspense fallback="Загружаю...">
@@ -15,13 +20,21 @@ export function Product() {
 						<>
 							<div className={styles.top}>
 								<div className={styles["top-left"]}>
-									<button className={styles["btn-back"]}>
+									<button
+										className={styles["btn-back"]}
+										onClick={() => {
+											navigate("/");
+										}}
+									>
 										<img src="/back-btn.svg" alt="Кнопка назад" />
 									</button>
 									<Heading>{data.name}</Heading>
 								</div>
 								<div className={styles["top-right"]}>
-									<Button className={styles["btn-buy"]}>
+									<Button
+										className={styles["btn-buy"]}
+										onClick={() => dispatch(cartActions.add(data.id))}
+									>
 										<img src="/cart-button-icon.svg" alt="" />
 										<span>В корзину</span>
 									</Button>
