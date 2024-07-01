@@ -1,3 +1,6 @@
+Сайт задеплоен по адресу:
+https://the-best-pizza-app-ever.netlify.app/
+
 Логин и пароль для входа:
 denis@gmail.com
 1234
