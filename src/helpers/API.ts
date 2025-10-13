@@ -1,1 +1,1 @@
-export const PREFIX = 'http://localhost:8000';
+export const PREFIX = 'https://pizza-back-93oc.onrender.com';
